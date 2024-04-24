@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <style>
+    /* Paste your CSS code here */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    #header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.5);
+      backdrop-filter: blur(5px);
+      z-index: 1000;
+    }
+    
+    nav ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      text-align: center;
+    }
+    
+    nav ul li {
+      display: inline-block;
+      margin: 10px;
+    }
+    
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      padding: 10px 20px;
+      transition: all 0.3s ease;
+    }
+    
+    nav ul li a:hover {
+      color: #000;
+    }
+    
+    .section {
+      padding: 50px 0;
+      text-align: center;
+    }
+    
+    .section h1,
+    .section h2 {
+      margin-bottom: 20px;
+      font-size: 2em;
+      color: #333;
+      transition: transform 0.5s ease;
+    }
+    
+    .section p {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+    
+    .animated {
+      animation: slideIn 0.5s forwards, fadeIn 0.5s forwards;
+    }
+    
+    @keyframes slideIn {
+      from {
+        transform: translateY(50px);
+      }
+      to {
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  <section id="home" class="section">
+    <h1>Welcome to My Portfolio</h1>
+  </section>
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a justo id justo sollicitudin fermentum.</p>
+  </section>
+  <section id="portfolio" class="section">
+    <h2>My Portfolio</h2>
+    <div class="portfolio-items">
+      <!-- Your portfolio items here -->
+    </div>
+  </section>
+  <section id="contact" class="section">
+    <h2>Contact Me</h2>
+    <p>Email: example@example.com</p>
+  </section>
+  <script>
+    // Paste your JavaScript code here
+    document.addEventListener("DOMContentLoaded", function() {
+      window.addEventListener("scroll", function() {
+        const header = document.querySelector("#header");
+        const sections = document.querySelectorAll(".section");
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          const sectionTitle = section.querySelector("h1, h2");
+          const sectionParagraphs = section.querySelectorAll("p");
+
+          if (window.pageYOffset >= sectionTop - header.offsetHeight && window.pageYOffset < sectionTop + sectionHeight - header.offsetHeight) {
+            sectionTitle.classList.add("animated");
+            sectionParagraphs.forEach(paragraph => {
+              paragraph.classList.add("animated");
+            });
+          } else {
+            sectionTitle.classList.remove("animated");
+            sectionParagraphs.forEach(paragraph => {
+              paragraph.classList.remove("animated");
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
